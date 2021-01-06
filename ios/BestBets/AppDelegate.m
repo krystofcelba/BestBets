@@ -46,9 +46,7 @@ static void InitializeFlipper(UIApplication *application) {
   InitializeFlipper(application);
 #endif
 
-  if ([FIRApp defaultApp] == nil) {
-      [FIRApp configure];
-    }
+  [FIRApp configure];
   
   [RNNotifications startMonitorNotifications];
   
