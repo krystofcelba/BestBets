@@ -1,20 +1,27 @@
-import { hydrateStores } from './stores';
-import { initServices, services } from './services';
-import { setOptionsForUseStyles } from './hooks/useStyles';
+import {hydrateStores} from './stores';
+import {initServices, services} from './services';
+import {setOptionsForUseStyles} from './hooks/useStyles';
+import auth from '@react-native-firebase/auth';
+import {stores} from './stores';
+import {Mode} from 'firestorter';
 
 export const startApp = async () => {
-  // rehydrate stores
   await hydrateStores();
 
-  // init services
   await initServices();
 
-  // (optional) set options for useStyles
   setOptionsForUseStyles({
     normalize: true,
     darkmode: true,
   });
 
-  // here you can start the app depending on auth state.
-  await services.nav.startApp();
+  auth().onAuthStateChanged(async (user) => {
+    if (user) {
+      stores.firestore.currentUser.path = `users/${user.uid}`;
+      stores.firestore.currentUser.mode = Mode.On;
+      await services.nav.startApp();
+    } else {
+      services.nav.startAuth();
+    }
+  });
 };

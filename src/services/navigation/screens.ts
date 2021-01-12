@@ -1,55 +1,43 @@
-import CounterScreen from 'src/screens/CounterScreen';
-import ExpoScreen from 'src/screens/ExpoScreen';
-import { Buttons } from './buttons';
+import LoginScreen from 'src/screens/auth/LoginScreen';
+import RegistrationScreen from 'src/screens/auth/RegistrationScreen';
+import SettingsScreen from 'src/screens/SettingsScreen';
+import MyBetsListScreen from 'src/screens/MyBetsListScreen';
+import {Buttons} from './buttons';
+import NewBetFormScreen from 'src/screens/NewBetFormScreen';
 
 // Here we define all information regarding screens
 
-const prefix = 'rnn_starter';
+const prefix = 'BestBets';
 
 const ScreenNames = {
-  CounterScreen: `${prefix}.CounterScreen`,
-  ExpoScreen: `${prefix}.ExpoScreen`,
+  SettingsScreen: `${prefix}.SettingsScreen`,
 
   ExampleScreen: `${prefix}.ExampleScreen`,
-}
+
+  LoginScreen: `${prefix}.LoginScreen`,
+  RegistrationScreen: `${prefix}.RegistrationScreen`,
+
+  MyBetsListScreen: `${prefix}.MyBetsListScreen`,
+  NewBetFormScreen: `${prefix}.NewBetFormScreen`,
+};
 
 const ScreenTitles = {
-  CounterScreen: 'Counter',
-  ExpoScreen: 'Expo',
 
   ExampleScreen: 'Example',
-}
 
-const ScreenButtons = {
-  CounterScreen: {
-    right: [Buttons.Inc, Buttons.Dec]
-  }
+  LoginScreen: `Login`,
+  RegistrationScreen: `Register`,
 };
 
-const ScreenOptions = {
-  CounterScreen: {
-    topBar: {
-      title: { text: ScreenTitles.CounterScreen, },
-      rightButtons: ScreenButtons.CounterScreen.right,
-    }
-  },
-  ExpoScreen: {
-    topBar: { title: { text: ScreenTitles.ExpoScreen, } }
-  },
 
-  ExampleScreen: {
-    topBar: { title: { text: ScreenTitles.ExampleScreen, } }
-  },
-}
+
 
 const Screens = new Map<string, React.FC<any>>();
-Screens.set(ScreenNames.CounterScreen, CounterScreen);
-Screens.set(ScreenNames.ExpoScreen, ExpoScreen);
+Screens.set(ScreenNames.SettingsScreen, SettingsScreen);
+Screens.set(ScreenNames.LoginScreen, LoginScreen);
+Screens.set(ScreenNames.RegistrationScreen, RegistrationScreen);
+Screens.set(ScreenNames.MyBetsListScreen, MyBetsListScreen);
+Screens.set(ScreenNames.NewBetFormScreen, NewBetFormScreen);
 
 export default Screens;
-export {
-  ScreenNames,
-  ScreenTitles,
-  ScreenOptions,
-  ScreenButtons,
-};
+export {ScreenNames, ScreenTitles};
